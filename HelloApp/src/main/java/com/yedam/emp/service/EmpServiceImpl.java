@@ -1,6 +1,8 @@
 package com.yedam.emp.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.yedam.emp.dao.EmpDAO;
 import com.yedam.emp.vo.EmpVO;
@@ -27,5 +29,15 @@ public class EmpServiceImpl implements EmpService{
 	@Override
 	public int updateEmp(EmpVO emp) {
 		return dao.putEmp(emp);
+	}
+
+	@Override
+	public Map<String, String> jobList() {
+		return dao.searchJobList();
+	}
+
+	@Override
+	public int removeEmp(int empId) {
+		return dao.deleteEmp(empId);
 	}
 }

@@ -1,6 +1,7 @@
 package com.yedam.emp.command;
 
 import java.io.IOException;
+import java.util.Map;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,17 +12,26 @@ import com.yedam.common.Command;
 import com.yedam.emp.service.EmpService;
 import com.yedam.emp.service.EmpServiceImpl;
 
-import java.util.*;
+public class EmpRemoveControl implements Command {
 
-public class EmpForm implements Command {
 
 	@Override
 	public void exec(HttpServletRequest req, HttpServletResponse resp) {
-
+		RequestDispatcher rd;
+		String id = req.getParameter("id");
+		
 		EmpService service = new EmpServiceImpl();
-		Map<String, String> jobList = service.jobList();
-		req.setAttribute("jobList", jobList);
-		RequestDispatcher rd =  req.getRequestDispatcher("WEB-INF/views/emp.jsp");
+		int r = service.removeEmp(Integer.parseInt(id));
+		
+		if(r>0) {
+			try {
+				resp.sendRedirect("empList.do");
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		} else {
+			// resp.sendRedirect("WEB-INF/result/errorResult.jsp");
+			rd = req.getRequestDispatcher("WEB-INF/result/errorResult.jsp");
 			try {
 				rd.forward(req, resp);
 			} catch (ServletException e) {
@@ -29,6 +39,7 @@ public class EmpForm implements Command {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
+		}
 	}
 
 }

@@ -30,7 +30,7 @@ public class EmpDAO extends DAO{
 				emp.setFirstName(rs.getString("first_name"));
 				emp.setLastName(rs.getString("last_name"));
 				emp.setEmail(rs.getString("email"));
-				emp.setHireDate(rs.getString("h_date"));
+				emp.setHireDate(rs.getString("hire_date"));
 				emp.setJobId(rs.getString("job_id"));
 				
 				emps.add(emp);
@@ -106,6 +106,43 @@ public class EmpDAO extends DAO{
 			psmt.setInt(5, emp.getEmployeeId());
 			
 			int r =psmt.executeUpdate();
+			return r;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			disconn();
+		}
+		return 0;
+	}
+
+	public Map<String, String> searchJobList() {
+		Map<String, String> list = new HashMap<String, String>();
+		connect();
+		sql = "select job_id, job_title from jobs order by job_id";
+		try {
+			psmt = conn.prepareStatement(sql);
+			rs = psmt.executeQuery();
+			
+			while(rs.next()) {
+				list.put(rs.getString("job_id"), rs.getString("job_title"));
+			}
+			return list;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			disconn();
+		}
+		return null;
+	}
+
+	public int deleteEmp(int empId) {
+		connect();
+		sql = "delete from emp_temp where employee_id=?";
+		try {
+			psmt = conn.prepareStatement(sql);
+			psmt.setInt(1, empId);
+			
+			int r = psmt.executeUpdate();
 			return r;
 		} catch (SQLException e) {
 			e.printStackTrace();

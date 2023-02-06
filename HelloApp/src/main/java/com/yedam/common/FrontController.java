@@ -16,6 +16,7 @@ import com.yedam.emp.command.EmpForm;
 import com.yedam.emp.command.EmpList;
 import com.yedam.emp.command.EmpModControl;
 import com.yedam.emp.command.EmpModFormControl;
+import com.yedam.emp.command.EmpRemoveControl;
 import com.yedam.emp.command.LoginControl;
 import com.yedam.emp.command.ServiceControl;
 
@@ -41,6 +42,7 @@ public class FrontController extends HttpServlet{
 		map.put("/empDetail.do", new EmpDetailControl());
 		map.put("/empModForm.do", new EmpModFormControl());
 		map.put("/empModify.do", new EmpModControl());
+		map.put("/empRemove.do", new EmpRemoveControl());
 	}
 	
 	@Override
@@ -49,11 +51,8 @@ public class FrontController extends HttpServlet{
 		resp.setCharacterEncoding("utf-8");
 		// url 패턴을 확인 => 요청페이지 어떤지 ?
 		String uri = req.getRequestURI();
-		System.out.println(uri);
 		String context = req.getContextPath();
-		System.out.println(context);
 		String page = uri.substring(context.length());
-		System.out.println(page);
 		
 		Command command = map.get(page);
 		command.exec(req,  resp);

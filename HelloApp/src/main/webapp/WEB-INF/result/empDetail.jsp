@@ -36,7 +36,7 @@ String id = (String) request.getAttribute("loginId");
 	<tr>
 		<td colspan="2" align="center">
 			<button class="btn btn-primary" onclick="location.href='empModForm.do?id=<%=emp.getEmployeeId()%>'">수정</button>
-			<button class="btn btn-warning" onclick="location.href='emp'">삭제</button>
+			<button class="btn btn-warning" onclick="location.href='empRemove.do?id=<%=emp.getEmployeeId()%>'">삭제</button>
 		</td>
 	</tr>
 </table>

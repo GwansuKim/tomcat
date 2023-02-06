@@ -1,3 +1,5 @@
+<%@page import="java.util.*"%>
+<%@page import="java.util.Map.Entry"%>
 <%@page import="com.yedam.emp.vo.EmpVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -9,6 +11,9 @@ String id = (String) request.getAttribute("loginId");
 %>
 <%=age%>,
 <%=id%>
+<%
+Map<String, String> list = (Map<String, String>) request.getAttribute("jobList"); // Object -> (EmpVO)
+%>
 <h3>현재 페이지는 empModForm.do의 결과 modify.jsp 입니다</h3>
 <form name="myFrm" action="empModify.do" method="post">
 	<table class="table">
@@ -33,15 +38,19 @@ String id = (String) request.getAttribute("loginId");
 		<tr>
 			<th>직무</th>
 			<td><select name="job">
-					<option value="IT_PROG">개발자</option>
-					<option value="SA_REP">영업사원</option>
-					<option value="SA_MAN">영업팀장</option>
+		<%
+		for (Entry<String, String> ent : list.entrySet()) {
+		%>
+		<option value="<%=ent.getKey()%>"><%=ent.getValue()%></option>
+		<%
+		}
+		%>
 			</select></td>
 		</tr>
 		<tr>
 			<td colspan="2" align="center">
 				<button type="submit" class="btn btn-primary">변경</button>
-				<button class="btn btn-warning" onclick="location.href='emp'">삭제</button>
+				<button type="button" class="btn btn-warning" onclick="location.href='empRemove.do?id=<%=emp.getEmployeeId()%>'">삭제</button>
 			</td>
 		</tr>
 	</table>
