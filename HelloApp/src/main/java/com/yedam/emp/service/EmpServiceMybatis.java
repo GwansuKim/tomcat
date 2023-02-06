@@ -28,7 +28,7 @@ public class EmpServiceMybatis implements EmpService{
 
 	@Override
 	public EmpVO getEmp(int empId) {
-		return null;
+		return session.selectOne("com.yedam.emp.mapper.EmpMapper.getEmp", empId);
 	}
 
 	@Override

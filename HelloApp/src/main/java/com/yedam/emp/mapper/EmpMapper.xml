@@ -7,7 +7,7 @@
   <select id="empList" resultType="com.yedam.emp.vo.EmpVO">
     select employee_id, first_name, last_name, email, job_id, to_char(hire_date, 'yyyy-mm-dd') hire_date from emp_temp order by employee_id
   </select>
-  <select id="emp" resultType="com.yedam.emp.vo.EmpVO">
-    select * from emp_temp order by employee_id
+  <select id="getEmp" resultType="com.yedam.emp.vo.EmpVO" parameterType="int">
+    select * from emp_temp where employee_id = #{empId}
   </select>
 </mapper>

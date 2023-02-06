@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Insert title here</title>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <link href="css/styles.css" rel="stylesheet" />
+    <style>
+      thead {
+        background-color: #000;
+        color: #fff;
+      }
+      label {
+        margin: 10px;
+        float: left;
+        width: 20%;
+        height: 30px;
+        text-align: center;
+        background-color: #ccc;
+        font-size: 18px;
+      }
+      .input {
+        width: 70%;
+        margin: 10px;
+      }
+      #titles {
+        float: left;
+        width: 80%;
+      }
+      #btns {
+        width: 20%;
+        float: right;
+        padding-top: 40px;
+      }
+      #btns button {
+        width: 80%;
+        margin: 20px auto;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="show">
+      <h3>도서목록 페이지</h3>
+      <hr />
+      <div id="titles">
+        <label class="field">도서코드</label>
+        <input type="text" id="bookCode" class="input" /><br />
+        <label class="field">도서명</label>
+        <input type="text" id="bookName" class="input" /><br />
+        <label class="field">저자</label>
+        <input type="text" id="author" class="input" /><br />
+        <label class="field">출판사</label>
+        <input type="text" id="press" class="input" /><br />
+        <label class="field">금액</label>
+        <input type="text" id="price" class="input" /><br />
+      </div>
+      <div id="btns">
+        <button type="button" onclick="addBook()">저장</button>
+        <br />
+        <button type="button" id="checkDel" onclick="deleteCheckedFnc()">
+          선택삭제
+        </button>
+      </div>
+      <table id="tbl" class="table">
+        <thead id="title">
+          <th>
+            <input type="checkbox" id="allSelectChk" onchange="allSelect()" />
+          </th>
+          <th>도서코드</th>
+          <th>도서명</th>
+          <th>저자</th>
+          <th>출판사</th>
+          <th>가격</th>
+          <th>삭제</th>
+        </thead>
+        <tbody id="list"></tbody>
+      </table>
+    </div>
+    <script src="js/book.js"></script>
+  </body>
+</html>
