@@ -17,9 +17,9 @@ public class EmpList implements Command {
 	public void exec(HttpServletRequest req, HttpServletResponse resp) {
 		EmpService service = new EmpServiceMybatis();
 		List<EmpVO> list = service.empList();
-		for(EmpVO emp : list) {
-			System.out.println(emp);
-		}
+//		for(EmpVO emp : list) {
+//			System.out.println(emp);
+//		}
 		
 		req.setAttribute("empList", list);
 		

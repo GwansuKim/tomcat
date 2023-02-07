@@ -14,7 +14,7 @@ import com.yedam.emp.vo.EmpVO;
 public class EmpServiceMybatis implements EmpService{
 
 	SqlSessionFactory sessionFactory = DataSource.getInstance();
-	SqlSession session = sessionFactory.openSession();
+	SqlSession session = sessionFactory.openSession(true); //true:자동 커밋
 	
 	@Override
 	public List<EmpVO> empList() {
@@ -23,7 +23,7 @@ public class EmpServiceMybatis implements EmpService{
 
 	@Override
 	public int addEmp(EmpVO emp) {
-		return 0;
+		return session.insert("com.yedam.emp.mapper.EmpMapper.addEmp", emp);
 	}
 
 	@Override
@@ -33,7 +33,7 @@ public class EmpServiceMybatis implements EmpService{
 
 	@Override
 	public int updateEmp(EmpVO emp) {
-		return 0;
+		return session.update("com.yedam.emp.mapper.EmpMapper.modEmp", emp);
 	}
 
 	@Override
@@ -43,7 +43,7 @@ public class EmpServiceMybatis implements EmpService{
 
 	@Override
 	public int removeEmp(int empId) {
-		return 0;
+		return session.delete("com.yedam.emp.mapper.EmpMapper.removeEmp", empId);
 	}
 	
 }

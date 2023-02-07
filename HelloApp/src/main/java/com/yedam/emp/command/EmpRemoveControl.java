@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.yedam.common.Command;
 import com.yedam.emp.service.EmpService;
 import com.yedam.emp.service.EmpServiceImpl;
+import com.yedam.emp.service.EmpServiceMybatis;
 
 public class EmpRemoveControl implements Command {
 
@@ -20,7 +21,8 @@ public class EmpRemoveControl implements Command {
 		RequestDispatcher rd;
 		String id = req.getParameter("id");
 		
-		EmpService service = new EmpServiceImpl();
+		//EmpService service = new EmpServiceImpl();
+		EmpService service = new EmpServiceMybatis();
 		int r = service.removeEmp(Integer.parseInt(id));
 		
 		if(r>0) {

@@ -9,8 +9,9 @@ EmpVO emp = (EmpVO) request.getAttribute("searchVO");
 Integer age = (Integer) request.getAttribute("myAge");
 String id = (String) request.getAttribute("loginId");
 %>
-<%=age%>,
-<%=id%>
+<%
+	String uid = (String) session.getAttribute("id");
+%>
 <h3>현재 페이지는 empDetail.do의 결과 empDetail.jsp 입니다</h3>
 <table class="table">
 	<tr>
@@ -33,11 +34,15 @@ String id = (String) request.getAttribute("loginId");
 		<th>직무</th>
 		<td><%=emp.getJobId()%></td>
 	</tr>
+	<% if (uid != null) { %>
 	<tr>
 		<td colspan="2" align="center">
-			<button class="btn btn-primary" onclick="location.href='empModForm.do?id=<%=emp.getEmployeeId()%>'">수정</button>
-			<button class="btn btn-warning" onclick="location.href='empRemove.do?id=<%=emp.getEmployeeId()%>'">삭제</button>
-		</td>
+			<button class="btn btn-primary"
+				onclick="location.href='empModForm.do?id=<%=emp.getEmployeeId()%>'">수정</button>
+			<button class="btn btn-warning"
+				onclick="location.href='empRemove.do?id=<%=emp.getEmployeeId()%>'">삭제</button>
+		</td>		
 	</tr>
+	<% } %>
 </table>
 <jsp:include page="../includes/footer.jsp"></jsp:include>

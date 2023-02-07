@@ -13,6 +13,7 @@ import com.yedam.emp.dao.EmpDAO;
 import com.yedam.emp.service.EmpService;
 import com.yedam.emp.service.EmpServiceImpl;
 import com.yedam.emp.vo.EmpVO;
+import com.yedam.member.vo.MemberVO;
 
 public class EmpControl implements Command {
 	@Override
@@ -47,6 +48,15 @@ public class EmpControl implements Command {
 			EmpVO emp = new EmpVO();
 			if (eid.equals("") || lName.equals("") || job.equals("") || hire.equals("") || mail.equals("")) {
 				// resp.sendRedirect("WEB-INF/result/errorResult.jsp");
+				
+				MemberVO vo = new MemberVO();
+				vo.setMemberId("user1");
+				vo.setMemberName("Hong");
+				vo.setMemberPhone("010-1111");
+				vo.setMemberAddr("대구 중구 100번지");
+
+				req.setAttribute("obj", vo);
+				
 				rd = req.getRequestDispatcher("WEB-INF/result/errorResult.jsp");
 				try {
 					rd.forward(req, resp);

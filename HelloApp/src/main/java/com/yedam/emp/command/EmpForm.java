@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.yedam.common.Command;
 import com.yedam.emp.service.EmpService;
 import com.yedam.emp.service.EmpServiceImpl;
+import com.yedam.emp.service.EmpServiceMybatis;
 
 import java.util.*;
 
@@ -19,6 +20,7 @@ public class EmpForm implements Command {
 	public void exec(HttpServletRequest req, HttpServletResponse resp) {
 
 		EmpService service = new EmpServiceImpl();
+		//EmpService service = new EmpServiceMybatis();
 		Map<String, String> jobList = service.jobList();
 		req.setAttribute("jobList", jobList);
 		RequestDispatcher rd =  req.getRequestDispatcher("WEB-INF/views/emp.jsp");
