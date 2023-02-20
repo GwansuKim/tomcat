@@ -33,13 +33,13 @@
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="empList.do">사원 목록 페이지</a>
                     <% if (id != null) { %>
                     	<a class="list-group-item list-group-item-action list-group-item-light p-3" href="empForm.do">사원 등록 페이지</a>
+                    	<a class="list-group-item list-group-item-action list-group-item-light p-3" href="myPageForm.do">MyPage</a>
                 		<a class="list-group-item list-group-item-action list-group-item-light p-3" href="logout.do">로그아웃</a>
                 	<% } else { %>
                     	<a class="list-group-item list-group-item-action list-group-item-light p-3" href="loginForm.do">로그인</a>
                     	<a class="list-group-item list-group-item-action list-group-item-light p-3" href="signOnForm.do">회원가입</a>
                 	<% } %>
                     <a class="list-group-item list-group-item-action list-group-item-light p-3" href="memberList.do">회원목록</a>
-                    <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Status</a>
                 </div>
             </div>
             <!-- Page content wrapper-->

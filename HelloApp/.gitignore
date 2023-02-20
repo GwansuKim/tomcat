@@ -1,2 +1,9 @@
 /build/
 /target/
+/.metadata/
+/.recommenders/
+*.project
+*.classpath
+.DS_Store
+org.*
+*.jsdtscope

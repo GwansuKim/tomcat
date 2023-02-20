@@ -19,7 +19,7 @@ public class SignOnControl implements Command {
 	public void exec(HttpServletRequest req, HttpServletResponse resp) {
 		// form:multipart/form-data => 처리(MultipartRequest)
 		// 생성자매개값: 1) 요청정보, 2) 저장경로, 3)최대 파일 사이즈 지정, 4)인코딩, 5)리네임정책 
-		String savePath = req.getServletContext().getRealPath("images");
+		String savePath = req.getServletContext().getRealPath("/images");
 		int maxSize = (1024 * 1024 * 10);
 		String encoding = "utf-8";
 		
@@ -31,13 +31,12 @@ public class SignOnControl implements Command {
 			String id = multi.getParameter("member_id");
 			String pw = multi.getParameter("member_pw");
 			String nm = multi.getParameter("member_name");
-			String ph = multi.getParameter("member_phonr");
+			String ph = multi.getParameter("member_phone");
 			String fileName = "";
 			
 			Enumeration<?> files = multi.getFileNames();
 			while(files.hasMoreElements()) {
 				String file = (String) files.nextElement();
-				System.out.println(file);
 				fileName = multi.getFilesystemName(file);
 			}
 			
